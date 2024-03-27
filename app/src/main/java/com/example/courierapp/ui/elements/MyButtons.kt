@@ -23,20 +23,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.courierapp.R
 import com.example.courierapp.ui.theme.BlueMain
+import com.example.courierapp.ui.theme.GrayMain
 
-@Preview
+
 @Composable
-fun MyButton() {
+fun MyButton(text : String, flag : Boolean) {
     Button(onClick = { /*TODO*/ },
         modifier = Modifier
             .fillMaxWidth()
             .height(53.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = BlueMain
+            containerColor = if (flag) BlueMain else GrayMain
         ),
         shape = RoundedCornerShape(33.dp)) {
         Text(
-            text = "Sign Up",
+            text = text,
             color = Color.White,
             fontWeight = FontWeight.Bold,
             fontSize = 18.sp,

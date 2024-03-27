@@ -15,6 +15,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,6 +41,9 @@ import com.example.courierapp.ui.theme.Yellow
 @Composable
 fun SignUp() {
     var values = ArrayList<String>()
+    var flag by remember{
+        mutableStateOf(false)
+    }
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Color.White),
@@ -77,8 +84,17 @@ fun SignUp() {
             Spacer(modifier = Modifier.height(25.dp))
             values.add(MyPassTextField("Confirm Password"))
             Spacer(modifier = Modifier.height(20.dp))
+
+            for (i in values){
+                if (i.equals("")){
+                    flag = false
+                    break
+                }
+                else flag = true
+            }
+
             Row {
-                MyCheckbox()
+                flag = MyCheckbox() && flag
                 Spacer(modifier = Modifier.width(20.dp))
                 Column {
                     Text(
@@ -102,7 +118,7 @@ fun SignUp() {
                 }
             }
             Spacer(modifier = Modifier.height(40.dp))
-            MyButton()
+            MyButton("Sign Up", flag)
             Spacer(modifier = Modifier.height(20.dp))
             OR()
             Spacer(modifier = Modifier.height(20.dp))
