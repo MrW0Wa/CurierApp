@@ -1,4 +1,4 @@
-package com.example.courierapp.ui.screens
+package xml
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,6 +34,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.courierapp.R
 import com.example.courierapp.data.OnboardingData
 import com.example.courierapp.ui.theme.Black
@@ -40,9 +42,8 @@ import com.example.courierapp.ui.theme.BlueMain
 import com.example.courierapp.ui.theme.GrayText
 import java.util.ArrayList
 
-@Preview
 @Composable
-fun Onboarding() {
+fun Onboarding(navController: NavController) {
     var page by remember {
         mutableStateOf(0)
     }
@@ -50,8 +51,8 @@ fun Onboarding() {
     pages.add(
         OnboardingData(
             image = R.drawable.onboarding1,
-            text1 = "Quick Delivery\nAt Your Doorstep",
-            text2 = "Enjoy quick pick-up and delivery to your\ndestination",
+            text1 = "Quick Delivery At Your Doorstep",
+            text2 = "Enjoy quick pick-up and delivery to your destination",
             button1 = "Skip",
             button2 = "Next"
         )
@@ -60,7 +61,7 @@ fun Onboarding() {
         OnboardingData(
             image = R.drawable.onboarding2,
             text1 = "Flexible Payment",
-            text2 = "Different modes of payment either before and\nafter delivery without stress",
+            text2 = "Different modes of payment either before and after delivery without stress",
             button1 = "Skip",
             button2 = "Next"
         )
@@ -69,7 +70,7 @@ fun Onboarding() {
         OnboardingData(
             image = R.drawable.onboarding3,
             text1 = "Real-time Tracking",
-            text2 = "Track your packages/items from the comfort\nof your home till final destination",
+            text2 = "Track your packages/items from the comfort of your home till final destination",
             button1 = "Sign Up",
             button2 = "Sign In"
         )
@@ -105,6 +106,8 @@ fun Onboarding() {
                 fontWeight = FontWeight.Black,
                 fontSize = 30.sp,
                 textAlign = TextAlign.Center,
+                maxLines = 2,
+                lineHeight = 28.sp
             )
             Text(
                 text = pages[page].text2,
@@ -112,12 +115,14 @@ fun Onboarding() {
                 fontWeight = FontWeight.Normal,
                 fontSize = 16.sp,
                 textAlign = TextAlign.Center,
+                maxLines = 2,
+                lineHeight = 20.sp
             )
             Spacer(modifier = Modifier.height(60.dp))
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween) {
                 OutlinedButton(
-                    onClick = {  },
+                    onClick = { navController.navigate("home") },
                     modifier = Modifier
                         .height(52.dp)
                         .width(144.dp)
@@ -136,7 +141,7 @@ fun Onboarding() {
                     )
                 }
                 Button(
-                    onClick = { page += 1 },
+                    onClick = { if (page == 2) navController.navigate("home") else page += 1 },
                     modifier = Modifier
                         .height(52.dp)
                         .width(144.dp),
@@ -145,13 +150,22 @@ fun Onboarding() {
                         containerColor = Color.White
                     )
                 ) {
-                    Text(
-                        text = pages[page].button2,
-                        color = Black,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
-                        textAlign = TextAlign.Center,
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        
+                        Text(
+                            text = pages[page].button2,
+                            color = Black,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
+                            textAlign = TextAlign.Center,
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Icon(
+                            painter = painterResource(id = R.drawable.arrowsbutton),
+                            contentDescription = null,
+                            tint = Black,
+                        )
+                    }
                 }
             }
             Spacer(modifier = Modifier.height(90.dp))
