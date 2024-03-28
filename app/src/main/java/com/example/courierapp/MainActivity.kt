@@ -50,7 +50,10 @@ fun Prev() {
             SignUp(navController)
         }
         composable("login"){
-            LogIn()
+            LogIn(navController)
+        }
+        composable("forgot"){
+
         }
 
     }

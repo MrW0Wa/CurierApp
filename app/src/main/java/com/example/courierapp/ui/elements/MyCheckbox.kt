@@ -22,9 +22,8 @@ import androidx.compose.ui.unit.dp
 import com.example.courierapp.R
 import com.example.courierapp.ui.theme.BlueMain
 
-@Preview
 @Composable
-fun MyCheckbox(): Boolean {
+fun MyCheckbox(color: Color): Boolean {
     var flag by remember {
         mutableStateOf(false)
     }
@@ -33,7 +32,7 @@ fun MyCheckbox(): Boolean {
             modifier = Modifier
                 .width(14.dp)
                 .height(14.dp)
-                .border(1.dp, BlueMain, RoundedCornerShape(2.dp))
+                .border(1.dp, color, RoundedCornerShape(2.dp))
         ) { }
     }
     else {

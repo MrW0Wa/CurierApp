@@ -82,3 +82,26 @@ fun MyGoogleButton() {
 
     }
 }
+
+@Composable
+fun CreateButton(navController: NavController) {
+    Button(onClick = { navController.navigate("signup") },
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(53.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Black
+        ),
+        shape = RoundedCornerShape(33.dp)) {
+
+                Text(
+                    text = "Create an Account",
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
+                    textAlign = TextAlign.Center,
+                    maxLines = 1
+                )
+
+    }
+}
