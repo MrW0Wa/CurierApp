@@ -21,14 +21,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.courierapp.R
 import com.example.courierapp.ui.theme.BlueMain
 import com.example.courierapp.ui.theme.GrayMain
 
 
 @Composable
-fun MyButton(text : String, flag : Boolean) {
-    Button(onClick = { /*TODO*/ },
+fun MyButton(text : String, flag : Boolean, navController: NavController, route : String) {
+    Button(onClick = { if (flag) navController.navigate(route) },
         modifier = Modifier
             .fillMaxWidth()
             .height(53.dp),

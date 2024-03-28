@@ -27,7 +27,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.courierapp.ui.elements.MyButton
 import com.example.courierapp.ui.elements.MyCheckbox
 import com.example.courierapp.ui.elements.MyGoogleButton
@@ -38,8 +37,9 @@ import com.example.courierapp.ui.theme.BlueMain
 import com.example.courierapp.ui.theme.GrayMain
 import com.example.courierapp.ui.theme.Yellow
 
+@Preview
 @Composable
-fun SignUp(navController: NavController) {
+fun LogIn() {
     var values = ArrayList<String>()
     var flag by remember{
         mutableStateOf(false)
@@ -118,7 +118,7 @@ fun SignUp(navController: NavController) {
                 }
             }
             Spacer(modifier = Modifier.height(40.dp))
-            MyButton("Sign Up", flag, navController, "home" )
+            //MyButton("Sign Up", flag)
             Spacer(modifier = Modifier.height(20.dp))
             OR()
             Spacer(modifier = Modifier.height(20.dp))
@@ -142,7 +142,7 @@ fun SignUp(navController: NavController) {
                     textAlign = TextAlign.Center,
                     maxLines = 1,
                     lineHeight = 16.sp,
-                    modifier = Modifier.clickable { navController.navigate("login") }
+                    modifier = Modifier.clickable {  }
                 )
             }
             Spacer(modifier = Modifier.height(200.dp))

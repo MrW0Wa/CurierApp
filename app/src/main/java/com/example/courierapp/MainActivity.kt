@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.courierapp.ui.screens.Home
+import com.example.courierapp.ui.screens.LogIn
 import com.example.courierapp.ui.screens.MySplashScreen
 import com.example.courierapp.ui.screens.SignUp
 import com.example.courierapp.ui.theme.CourierAppTheme
@@ -46,7 +47,10 @@ fun Prev() {
             Home()
         }
         composable("signup"){
-            SignUp()
+            SignUp(navController)
+        }
+        composable("login"){
+            LogIn()
         }
 
     }
