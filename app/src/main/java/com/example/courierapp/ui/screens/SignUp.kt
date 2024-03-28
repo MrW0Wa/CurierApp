@@ -94,7 +94,7 @@ fun SignUp(navController: NavController) {
             }
 
             Row {
-                flag = MyCheckbox() && flag
+                flag = MyCheckbox(BlueMain) && flag
                 Spacer(modifier = Modifier.width(20.dp))
                 Column {
                     Text(
