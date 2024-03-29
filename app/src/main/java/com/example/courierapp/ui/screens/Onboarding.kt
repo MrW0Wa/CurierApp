@@ -122,7 +122,7 @@ fun Onboarding(navController: NavController) {
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween) {
                 OutlinedButton(
-                    onClick = { navController.navigate("home") },
+                    onClick = { navController.navigate("signup") },
                     modifier = Modifier
                         .height(52.dp)
                         .width(144.dp)
@@ -141,7 +141,7 @@ fun Onboarding(navController: NavController) {
                     )
                 }
                 Button(
-                    onClick = { if (page == 2) navController.navigate("home") else page += 1 },
+                    onClick = { if (page == 2) navController.navigate("signup") else page += 1 },
                     modifier = Modifier
                         .height(52.dp)
                         .width(144.dp),
