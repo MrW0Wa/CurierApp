@@ -27,12 +27,14 @@ fun MyCheckbox(color: Color): Boolean {
     var flag by remember {
         mutableStateOf(false)
     }
+
     if (flag == false ) {
         Box(
             modifier = Modifier
                 .width(14.dp)
                 .height(14.dp)
                 .border(1.dp, color, RoundedCornerShape(2.dp))
+                .clickable { flag = !flag }
         ) { }
     }
     else {
