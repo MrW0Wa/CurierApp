@@ -32,6 +32,7 @@ import androidx.navigation.NavController
 import com.example.courierapp.ui.elements.CreateButton
 import com.example.courierapp.ui.elements.MyButton
 import com.example.courierapp.ui.elements.MyCheckbox
+import com.example.courierapp.ui.elements.MyCodeTextField
 import com.example.courierapp.ui.elements.MyGoogleButton
 import com.example.courierapp.ui.elements.MyPassTextField
 import com.example.courierapp.ui.elements.MyTextField
@@ -40,9 +41,9 @@ import com.example.courierapp.ui.theme.BlueMain
 import com.example.courierapp.ui.theme.GrayMain
 import com.example.courierapp.ui.theme.Yellow
 
-
+@Preview
 @Composable
-fun LogIn(navController: NavController) {
+fun OTP() {
     var values = ArrayList<String>()
     var flag by remember{
         mutableStateOf(false)
@@ -59,7 +60,7 @@ fun LogIn(navController: NavController) {
         ) {
             Spacer(modifier = Modifier.height(150.dp))
             Text(
-                text = "Welcome back",
+                text = "OPT Verification",
                 color = BlueMain,
                 fontWeight = FontWeight.Black,
                 fontSize = 30.sp,
@@ -68,7 +69,7 @@ fun LogIn(navController: NavController) {
                 lineHeight = 28.sp
             )
             Text(
-                text = "Fill in your email and password to continue",
+                text = "Enter the 6 digit numbers sent to your email",
                 color = GrayMain,
                 fontWeight = FontWeight.Normal,
                 fontSize = 16.sp,
@@ -77,10 +78,15 @@ fun LogIn(navController: NavController) {
                 lineHeight = 20.sp
             )
             Spacer(modifier = Modifier.height(40.dp))
-            values.add(MyTextField("***********@mail.com"))
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                values.add(MyCodeTextField())
+                values.add(MyCodeTextField())
+                values.add(MyCodeTextField())
+                values.add(MyCodeTextField())
+                values.add(MyCodeTextField())
+                values.add(MyCodeTextField())
+            }
             Spacer(modifier = Modifier.height(25.dp))
-            values.add(MyPassTextField("Password"))
-            Spacer(modifier = Modifier.height(20.dp))
 
             for (i in values){
                 if (i.equals("")){
@@ -90,43 +96,31 @@ fun LogIn(navController: NavController) {
                 else flag = true
             }
 
-            Row(modifier = Modifier.fillMaxWidth(0.98f), horizontalArrangement = Arrangement.SpaceBetween) {
-                Row {
-                    MyCheckbox(GrayMain)
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(
-                        text = "Remember password",
-                        color = GrayMain,
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center,
-                        maxLines = 2,
-                        lineHeight = 16.sp
-                    )
-                }
+
+            //MyButton(text = "Sent OTP", flag = flag, navController = navController, route = "OTP")
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Row {
                 Text(
-                    text = "Forgot password?",
+                    text = "Remember password? Back to ",
+                    color = GrayMain,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 14.sp,
+                    textAlign = TextAlign.Center,
+                    maxLines = 1,
+                    lineHeight = 16.sp
+                )
+                Text(
+                    text = "Sign in",
                     color = BlueMain,
                     fontWeight = FontWeight.Medium,
-                    fontSize = 12.sp,
+                    fontSize = 14.sp,
                     textAlign = TextAlign.Center,
-                    maxLines = 2,
+                    maxLines = 1,
                     lineHeight = 16.sp,
-                    modifier = Modifier.clickable { navController.navigate("forgot") }
+                    ///modifier = Modifier.clickable { navController.navigate("login") }
                 )
-
             }
-            Spacer(modifier = Modifier.height(40.dp))
-            MyButton("Log In", flag, navController, "home")
-            Spacer(modifier = Modifier.height(20.dp))
-            MyGoogleButton()
-            Spacer(modifier = Modifier.height(20.dp))
-            OR()
-            Spacer(modifier = Modifier.height(20.dp))
-            CreateButton(navController)
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Spacer(modifier = Modifier.height(200.dp))
 
 
 

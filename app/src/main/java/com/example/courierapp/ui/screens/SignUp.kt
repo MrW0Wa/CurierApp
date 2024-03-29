@@ -50,7 +50,7 @@ fun SignUp(navController: NavController) {
         contentAlignment = Alignment.TopCenter){
         Column(
             modifier = Modifier
-                .fillMaxWidth(0.9f)
+                .fillMaxWidth(0.85f)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
