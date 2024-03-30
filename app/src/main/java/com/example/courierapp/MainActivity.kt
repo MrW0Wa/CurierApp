@@ -18,6 +18,7 @@ import com.example.courierapp.ui.screens.Forgot
 import com.example.courierapp.ui.screens.Home
 import com.example.courierapp.ui.screens.LogIn
 import com.example.courierapp.ui.screens.MySplashScreen
+import com.example.courierapp.ui.screens.NewPass
 import com.example.courierapp.ui.screens.OTP
 import com.example.courierapp.ui.screens.SignUp
 import com.example.courierapp.ui.theme.CourierAppTheme
@@ -61,7 +62,7 @@ fun Prev() {
             OTP(navController)
         }
         composable("newpass"){
-            Home()
+            NewPass(navController = navController)
         }
 
     }
