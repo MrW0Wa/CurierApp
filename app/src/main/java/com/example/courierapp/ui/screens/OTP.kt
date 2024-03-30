@@ -16,6 +16,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,13 +41,16 @@ import com.example.courierapp.ui.elements.OR
 import com.example.courierapp.ui.theme.BlueMain
 import com.example.courierapp.ui.theme.GrayMain
 import com.example.courierapp.ui.theme.Yellow
+import kotlinx.coroutines.delay
 
-@Preview
 @Composable
-fun OTP() {
+fun OTP(navController: NavController) {
     var values = ArrayList<String>()
     var flag by remember{
         mutableStateOf(false)
+    }
+    var time by remember{
+        mutableStateOf(59)
     }
     Box(modifier = Modifier
         .fillMaxSize()
@@ -86,7 +90,7 @@ fun OTP() {
                 values.add(MyCodeTextField())
                 values.add(MyCodeTextField())
             }
-            Spacer(modifier = Modifier.height(25.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             for (i in values){
                 if (i.equals("")){
@@ -95,14 +99,16 @@ fun OTP() {
                 }
                 else flag = true
             }
-
-
-            //MyButton(text = "Sent OTP", flag = flag, navController = navController, route = "OTP")
-            Spacer(modifier = Modifier.height(20.dp))
+            if (time > 0) {
+                LaunchedEffect(time) {
+                    delay(1000)
+                    time -= 1
+                }
+            }
 
             Row {
                 Text(
-                    text = "Remember password? Back to ",
+                    text = "If you didn’t receive code, ",
                     color = GrayMain,
                     fontWeight = FontWeight.Normal,
                     fontSize = 14.sp,
@@ -111,16 +117,20 @@ fun OTP() {
                     lineHeight = 16.sp
                 )
                 Text(
-                    text = "Sign in",
-                    color = BlueMain,
+                    text = if (time > 0) "resend after $time" else "resend",
+                    color = if (time > 0) GrayMain else BlueMain,
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
                     textAlign = TextAlign.Center,
                     maxLines = 1,
                     lineHeight = 16.sp,
-                    ///modifier = Modifier.clickable { navController.navigate("login") }
+                    modifier = if (time <= 0) Modifier.clickable {  } else Modifier
                 )
             }
+
+            Spacer(modifier = Modifier.height(60.dp))
+            MyButton(text = "Set New Password", flag = flag, navController = navController, route = "newpass")
+            Spacer(modifier = Modifier.height(200.dp))
 
 
 
