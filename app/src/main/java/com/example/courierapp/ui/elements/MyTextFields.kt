@@ -1,5 +1,7 @@
 package com.example.courierapp.ui.elements
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,9 +24,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -33,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import com.example.courierapp.R
 import com.example.courierapp.ui.theme.Black
 import com.example.courierapp.ui.theme.BlackIcons
+import com.example.courierapp.ui.theme.BlueMain
 import com.example.courierapp.ui.theme.GrayLight
 import com.example.courierapp.ui.theme.GrayMain
 
@@ -125,5 +130,45 @@ fun MyPassTextField(text : String): String {
         },
         visualTransformation = if (!isvisible) PasswordVisualTransformation('*') else VisualTransformation.None
     )
+    return value
+}
+@Preview
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyCodeTextField(): String {
+    var value by remember{
+        mutableStateOf("")
+    }
+    Box(contentAlignment = Alignment.Center){
+        OutlinedTextField(
+            value = value,
+            onValueChange = {
+                value = it
+                value = value.get(0).toString()
+                            },
+            modifier = Modifier
+                .width(42.dp)
+                .height(51.dp)
+            ,
+            shape = RoundedCornerShape(10.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = BlueMain,
+                unfocusedBorderColor = if (value.equals("")) GrayMain else BlueMain,
+                containerColor = Color.White
+            ),
+            textStyle = TextStyle(
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Normal,
+                color = Color.White,
+                ),
+
+        )
+        Text(
+            text = value,
+            fontWeight = FontWeight.Normal,
+            fontSize = 24.sp,
+        )
+    }
+
     return value
 }
