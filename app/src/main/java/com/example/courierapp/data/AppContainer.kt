@@ -10,8 +10,7 @@ interface AppContainer {
     val userService : UserService
 }
 
-/*
-class DefaultContainer : AppContainer{
+class DefaultAppContainer(override val userService: UserService) : AppContainer{
     private val BASE_URL = "http://10.0.2.2:8080/users"
 
     private val retrofit : Retrofit = Retrofit.Builder()
@@ -22,4 +21,8 @@ class DefaultContainer : AppContainer{
     private val retrofitService : UserService by lazy {
         retrofit.create(UserService::class.java)
     }
-}*/
+
+    private val userRepository : UserRepository by lazy {
+        NetworkUserRepository(retrofitService)
+    }
+}
