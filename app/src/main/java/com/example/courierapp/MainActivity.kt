@@ -14,13 +14,17 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.courierapp.data.BottomData
 import com.example.courierapp.ui.screens.Forgot
 import com.example.courierapp.ui.screens.Home
 import com.example.courierapp.ui.screens.LogIn
 import com.example.courierapp.ui.screens.MySplashScreen
 import com.example.courierapp.ui.screens.NewPass
 import com.example.courierapp.ui.screens.OTP
+import com.example.courierapp.ui.screens.Profile
 import com.example.courierapp.ui.screens.SignUp
+import com.example.courierapp.ui.screens.Track
+import com.example.courierapp.ui.screens.Wallet
 import com.example.courierapp.ui.theme.CourierAppTheme
 import xml.Onboarding
 
@@ -39,15 +43,15 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Prev() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "splash"){
+    NavHost(navController = navController, startDestination = "home"){
         composable("splash"){
             MySplashScreen(navController)
         }
         composable("onboarding"){
             Onboarding(navController)
         }
-        composable("home"){
-            Home()
+        composable(BottomData.Home.route){
+            Home(navController)
         }
         composable("signup"){
             SignUp(navController)
@@ -64,6 +68,16 @@ fun Prev() {
         composable("newpass"){
             NewPass(navController = navController)
         }
+        composable(BottomData.Wallet.route){
+            Wallet(navController = navController)
+        }
+        composable(BottomData.Track.route){
+            Track(navController = navController)
+        }
+        composable(BottomData.Profile.route){
+            Profile(navController = navController)
+        }
+
 
     }
 }

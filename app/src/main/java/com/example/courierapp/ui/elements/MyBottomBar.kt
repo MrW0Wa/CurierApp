@@ -59,7 +59,7 @@ fun MyBottomBar(navController: NavController) {
                     Text(
                         text = item.label,
                         color = Color.White,
-                        fontWeight = FontWeight.Normal,
+                        fontWeight = if (route == item.route) FontWeight.Medium else FontWeight.Normal,
                         fontSize = 12.sp,
                         textAlign = TextAlign.Center,
                     )

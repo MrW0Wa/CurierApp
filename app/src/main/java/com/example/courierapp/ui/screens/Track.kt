@@ -17,7 +17,7 @@ import com.example.courierapp.ui.theme.BlueMain
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Home(navController: NavController) {
+fun Track(navController: NavController) {
     Scaffold(
         bottomBar = {
             MyBottomBar(navController = navController)
