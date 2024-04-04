@@ -31,14 +31,14 @@ import com.example.courierapp.ui.theme.Black
 import com.example.courierapp.ui.theme.GrayMain
 
 @Composable
-fun MyProfileCard(label : String, text: String) {
+fun MyProfileCard(icon: Int ,label : String, text: String) {
     Card(modifier = Modifier
         .fillMaxWidth()
         .height(58.dp)
         .shadow(
-            elevation = 10.dp,
-            ambientColor = Color.Black,
-            spotColor = Color.Black,
+            elevation = 6.dp,
+            ambientColor = Black,
+            spotColor = Black,
             shape = RoundedCornerShape(22.dp)
         )
         .clickable {  },
@@ -53,10 +53,10 @@ fun MyProfileCard(label : String, text: String) {
                     verticalAlignment = Alignment.CenterVertically) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Spacer(modifier = Modifier.width(20.dp))
-                        Icon(painter = painterResource(id = R.drawable.profilecard), contentDescription = null)
+                        Icon(painter = painterResource(id = icon), contentDescription = null)
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
-                            text = "Edit Profile",
+                            text = label,
                             color = Color.Black,
                             fontWeight =  FontWeight.ExtraBold,
                             fontSize = 12.sp,
@@ -64,7 +64,7 @@ fun MyProfileCard(label : String, text: String) {
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
-                            text = "Name, phone no, address, email ...",
+                            text = text,
                             color = GrayMain,
                             fontWeight =  FontWeight.Normal,
                             fontSize = 10.sp,

@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +33,7 @@ import androidx.navigation.NavController
 import com.example.courierapp.R
 import com.example.courierapp.ui.elements.MyBottomBar
 import com.example.courierapp.ui.elements.MyCheckbox
+import com.example.courierapp.ui.elements.MyProfileCard
 import com.example.courierapp.ui.theme.Black
 import com.example.courierapp.ui.theme.BlueMain
 import com.example.courierapp.ui.theme.Red
@@ -43,7 +47,7 @@ fun Profile(navController: NavController) {
         },
         containerColor = Color.White
     ) {
-
+        prev()
     }
 }
 
@@ -58,10 +62,12 @@ fun prev() {
     ){
 
         Column(
-            modifier = Modifier.fillMaxWidth(0.85f),
+            modifier = Modifier
+                .fillMaxWidth(0.9f)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
         ){
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(50.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -90,7 +96,7 @@ fun prev() {
                 }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
             Image(painter = painterResource(id = R.drawable.avtr), contentDescription = null,
                 modifier = Modifier.width(143.dp), contentScale = ContentScale.Crop)
@@ -100,8 +106,47 @@ fun prev() {
                 color = Color.Black,
                 fontWeight =  FontWeight.Black,
                 fontSize = 30.sp,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Center
             )
+
+            Row {
+                Text(
+                    text = "Current balance: ",
+                    color = Black,
+                    fontWeight =  FontWeight.Normal,
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = "N10,712:00",
+                    color = BlueMain,
+                    fontWeight =  FontWeight.Normal,
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                IconButton(onClick = { /*TODO*/ }, modifier = Modifier
+                    .height(14.dp)
+                    .width(14.dp)) {
+                    Icon(painter = painterResource(id = R.drawable.eyepassword), contentDescription = null)
+                }
+
+            }
+            Spacer(modifier = Modifier.height(40.dp))
+
+
+            MyProfileCard(icon = R.drawable.profilecard, label = "Edit Profile", text = "Name, phone no, address, email ...")
+            Spacer(modifier = Modifier.height(10.dp))
+            MyProfileCard(icon = R.drawable.profilecard, label = "Statements & Reports", text = "Download transaction deta...")
+            Spacer(modifier = Modifier.height(10.dp))
+            MyProfileCard(icon = R.drawable.profilecard, label = "Notification Settings", text = "mute, unmute, set location...")
+            Spacer(modifier = Modifier.height(10.dp))
+            MyProfileCard(icon = R.drawable.profilecard, label = "Card & Bank account settings", text = "change card, del...")
+            Spacer(modifier = Modifier.height(10.dp))
+            MyProfileCard(icon = R.drawable.profilecard, label = "Referrals", text = "check no of friends and earn")
+            Spacer(modifier = Modifier.height(10.dp))
+            MyProfileCard(icon = R.drawable.profilecard, label = "About Us", text = "know more about us, terms and conditions")
+            Spacer(modifier = Modifier.height(200.dp))
 
             }
 
