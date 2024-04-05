@@ -19,6 +19,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -47,13 +51,16 @@ fun Profile(navController: NavController) {
         },
         containerColor = Color.White
     ) {
-        prev()
+        prev(navController)
     }
 }
 
-@Preview
 @Composable
-fun prev() {
+fun prev(navController: NavController) {
+
+    var flag by remember{
+        mutableStateOf(true)
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -118,14 +125,14 @@ fun prev() {
                     textAlign = TextAlign.Center
                 )
                 Text(
-                    text = "N10,712:00",
+                    text = if(flag) "N10,712:00" else "*".repeat("N10,712:00".length),
                     color = BlueMain,
                     fontWeight =  FontWeight.Normal,
                     fontSize = 12.sp,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.width(10.dp))
-                IconButton(onClick = { /*TODO*/ }, modifier = Modifier
+                IconButton(onClick = { flag = !flag }, modifier = Modifier
                     .height(14.dp)
                     .width(14.dp)) {
                     Icon(painter = painterResource(id = R.drawable.eyepassword), contentDescription = null)
