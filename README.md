@@ -15,7 +15,9 @@ Welcome to the Mobile Android Application for easy interaction between the clien
  - Coil: Coil is a lightweight image loading library for Android, designed for simplicity and performance. It offers features such as memory caching and automatic request cancellation, ensuring efficient loading and display of images in the application.
 
 # Client-Server Interaction
-The project involves developing robust client-server interaction with a special API server. The API server provides endpoints for accessing and manipulating data relevant to the application's functionality. We utilize Retrofit to establish communication with the server, exchanging data in a structured format (e.g., JSON) over HTTP.
+The project involves developing robust client-server interaction with a special API server. The API server provides endpoints for accessing and manipulating data relevant to the application's functionality. We utilize Retrofit to establish communication with the server, exchanging data in JSON over HTTP.
+
+API server project - ![github project](https://github.com/MrW0Wa/ApiForMobileApps)
 
 # Clean Architecture
 The project follows clean architecture principles to ensure maintainability, testability, and scalability. By separating concerns into distinct layers (e.g., presentation, domain, data), we achieve a modular and flexible architecture that promotes code reuse and simplifies maintenance.
