@@ -3,6 +3,7 @@ package com.example.courierapp.ui.elements
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,6 +31,7 @@ import androidx.navigation.NavController
 import com.example.courierapp.R
 import com.example.courierapp.ui.theme.Black
 import com.example.courierapp.ui.theme.GrayMain
+import com.example.courierapp.ui.theme.Red
 
 @Composable
 fun MyProfileCard(icon: Int ,label : String, text: String, navController: NavController, route : String) {
@@ -92,7 +94,7 @@ fun MyProfileCard(icon: Int ,label : String, text: String) {
             spotColor = Black,
             shape = RoundedCornerShape(22.dp)
         )
-        .clickable {  },
+        .clickable { },
         colors = CardDefaults.cardColors(
             containerColor = Color.White,
 
@@ -126,6 +128,61 @@ fun MyProfileCard(icon: Int ,label : String, text: String) {
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(painter = painterResource(id = R.drawable.strelkacard), contentDescription =null )
                     }
+                }
+            }
+        }
+    )
+}
+
+
+@Composable
+fun MyTransactCard(sum : String, text : String, date : String, col : Color) {
+    Card(modifier = Modifier
+        .fillMaxWidth()
+        .height(44.dp)
+        .shadow(
+            elevation = 3.dp,
+            ambientColor = Black,
+            spotColor = Black,
+            shape = RoundedCornerShape(10.dp)
+        )
+        .clickable { },
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White,
+
+            ),
+        shape = RoundedCornerShape(10.dp),
+        content = {
+            Box(modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(0.9f),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column {
+                        Text(
+                            text = sum,
+                            color = col,
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 16.sp,
+                            textAlign = TextAlign.Center
+                        )
+                        Text(
+                            text = text,
+                            color = Black,
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                    Text(
+                        text = date,
+                        color = GrayMain,
+                        fontWeight = FontWeight.Normal,
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
         }

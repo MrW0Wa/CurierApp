@@ -87,3 +87,27 @@ fun MyTopBar(text : String, navController: NavController, route : String) {
             }
         })
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MySimpleTopBar(text : String) {
+    TopAppBar(title = {
+        Box(modifier = Modifier.fillMaxSize().padding(top = 45.dp), contentAlignment = Alignment.Center){
+            Text(
+                text = text,
+                color = GrayMain,
+                fontWeight =  FontWeight.Medium,
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center
+            )
+        }
+    },
+        modifier = Modifier
+            .height(108.dp)
+            .shadow(elevation = 10.dp,
+                spotColor = Black,
+                ambientColor = Black),
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = Color.White
+        ))
+}
