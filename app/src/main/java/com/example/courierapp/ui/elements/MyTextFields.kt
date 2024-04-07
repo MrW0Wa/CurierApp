@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -170,5 +171,47 @@ fun MyCodeTextField(): String {
         )
     }
 
+    return value
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MySendTextField(text : String): String {
+    var value by remember{
+        mutableStateOf("")
+    }
+
+    Box(modifier = Modifier, contentAlignment = Alignment.CenterStart){
+        OutlinedTextField(
+            value = value,
+            onValueChange = { value = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(32.dp)
+                .shadow(elevation = 5.dp,
+                    ambientColor = Black,
+                    spotColor = Black,
+                    shape = RoundedCornerShape(10.dp))
+            ,
+            shape = RoundedCornerShape(10.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.White,
+                unfocusedBorderColor = Color.White,
+                containerColor = Color.White
+            )
+        )
+        Row {
+            Spacer(modifier = Modifier.width(10.dp))
+            Text(
+                text = text,
+                color = GrayLight,
+                fontWeight = FontWeight.Normal,
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center,
+                maxLines = 1,
+                lineHeight = 16.sp
+            )
+        }
+    }
     return value
 }
