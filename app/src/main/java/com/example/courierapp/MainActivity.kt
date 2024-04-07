@@ -71,7 +71,7 @@ fun Prev() {
             NewPass(navController = navController)
         }
         composable(BottomData.Wallet.route){
-            Wallet(navController = navController)
+            Wallet()
         }
         composable(BottomData.Track.route){
             Track(navController = navController)
