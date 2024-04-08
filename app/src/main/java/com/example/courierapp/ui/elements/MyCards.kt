@@ -1,5 +1,8 @@
 package com.example.courierapp.ui.elements
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -30,6 +34,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.courierapp.R
 import com.example.courierapp.ui.theme.Black
+import com.example.courierapp.ui.theme.BlueMain
+import com.example.courierapp.ui.theme.GrayLight
 import com.example.courierapp.ui.theme.GrayMain
 import com.example.courierapp.ui.theme.Red
 
@@ -187,4 +193,63 @@ fun MyTransactCard(sum : String, text : String, date : String, col : Color) {
             }
         }
     )
+}
+
+
+@Preview
+@Composable
+fun MyHomeAvtrCard() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(91.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = BlueMain
+        )
+    ) {
+        Box(modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center){
+            Row(modifier = Modifier.fillMaxWidth(0.92f),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Image(
+                        painter = painterResource(id = R.drawable.avtr),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .height(60.dp)
+                            .border(1.dp, Color.White, RoundedCornerShape(60.dp)),
+                        contentScale = ContentScale.Crop,
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Column {
+                        Text(
+                            text = "Hello Ken!",
+                            color = Color.White,
+                            fontWeight =  FontWeight.Medium,
+                            fontSize = 24.sp,
+                            textAlign = TextAlign.Center,
+                            maxLines = 1
+                        )
+                        Text(
+                            text = "We trust you are having a great time",
+                            color = GrayLight,
+                            fontWeight =  FontWeight.Normal,
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center,
+                            maxLines = 1
+                        )
+                    }
+                }
+                IconButton(onClick = { /*TODO*/ },
+                    modifier = Modifier.height(24.dp).width(24.dp)) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.bellhomecard),
+                        contentDescription = null,
+                        tint = Color.White
+                    )
+                }
+            }
+        }
+    }
 }

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
+import androidx.compose.material3.TextField
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -188,10 +189,12 @@ fun MySendTextField(text : String): String {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(32.dp)
-                .shadow(elevation = 5.dp,
+                .shadow(
+                    elevation = 5.dp,
                     ambientColor = Black,
                     spotColor = Black,
-                    shape = RoundedCornerShape(10.dp))
+                    shape = RoundedCornerShape(10.dp)
+                )
             ,
             shape = RoundedCornerShape(10.dp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -214,4 +217,50 @@ fun MySendTextField(text : String): String {
         }
     }
     return value
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+fun MySearchTextField() {
+    var value by remember {
+        mutableStateOf("")
+    }
+    Box(modifier = Modifier, contentAlignment = Alignment.CenterStart) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = { value = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(34.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                containerColor = GrayLight,
+                focusedBorderColor = GrayLight,
+                unfocusedBorderColor = GrayLight
+            ),
+            shape = RoundedCornerShape(4.dp),
+            trailingIcon = {
+                IconButton(
+                    onClick = { /*TODO*/ }, modifier = Modifier
+                        .height(12.dp)
+                        .width(12.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.lupa),
+                        contentDescription = null,
+                        tint = GrayMain
+                    )
+                }
+            },
+            placeholder = {}
+        )
+        Text(
+            text = "    Search services",
+            color = GrayMain,
+            fontWeight =  FontWeight.Normal,
+            fontSize = 12.sp,
+            textAlign = TextAlign.Center
+        )
+    }
 }
