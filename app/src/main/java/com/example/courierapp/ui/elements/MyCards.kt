@@ -20,6 +20,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -35,6 +39,7 @@ import androidx.navigation.NavController
 import com.example.courierapp.R
 import com.example.courierapp.ui.theme.Black
 import com.example.courierapp.ui.theme.BlueMain
+import com.example.courierapp.ui.theme.CardGray
 import com.example.courierapp.ui.theme.GrayLight
 import com.example.courierapp.ui.theme.GrayMain
 import com.example.courierapp.ui.theme.Red
@@ -242,13 +247,58 @@ fun MyHomeAvtrCard() {
                     }
                 }
                 IconButton(onClick = { /*TODO*/ },
-                    modifier = Modifier.height(24.dp).width(24.dp)) {
+                    modifier = Modifier
+                        .height(24.dp)
+                        .width(24.dp)) {
                     Icon(
                         painter = painterResource(id = R.drawable.bellhomecard),
                         contentDescription = null,
                         tint = Color.White
                     )
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun MyHomeCard(icon : Int, label : String, text : String) {
+    var flag by remember{
+        mutableStateOf(false)
+    }
+    Card(
+        modifier = Modifier
+            .height(159.dp)
+            .width(159.dp)
+            .clickable { flag = !flag },
+        shape = RoundedCornerShape(28.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = if (flag) BlueMain else CardGray,
+        )
+    ) {
+        Box(modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center){
+            Column(modifier = Modifier.fillMaxWidth(0.75f)) {
+                Icon(painter = painterResource(id = icon), contentDescription =null, tint = if (flag) Color.White else BlueMain )
+                Spacer(modifier = Modifier.height(5.dp))
+
+                Text(
+                    text = label,
+                    color = if (flag) Color.White else BlueMain,
+                    fontWeight =  FontWeight.Medium,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                Text(
+                    text = text,
+                    color = if (flag) Color.White else Black,
+                    fontWeight =  FontWeight.Normal,
+                    fontSize = 8.sp,
+                    textAlign = TextAlign.Start,
+                    maxLines = 3,
+                    lineHeight = 10.sp
+                )
             }
         }
     }
